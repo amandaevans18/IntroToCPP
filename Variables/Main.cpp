@@ -215,30 +215,30 @@ int main()
 	//Fun facts for your age
 
 	//Something extra on the way (limiting what the user can input and sending a message back)
-	system("pause");
+	//system("pause");
 
-	std::cout << "Thats all for today! please rate your experiance below from 1 to 5" << std::endl;
-	std::cout << "" << std::endl;
-	int userRating = 0;
-	bool done = false;
-	std::cin >> userRating;
-	while (done == false)
-	{
-		if (userRating == 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10)
-		{
-			std::cout << "Thanks for rating!" << std::endl;
-			done = true;
-		}
-		else if (userRating == 420)
-		{
-			std::cout << "lit!" << std::endl;
-			done = true;
-		}
-		else
-		{
-			std::cout << "Invalid try again!" << std::endl;
-			std::cin >> userRating;
-		}
-	}
-	return 0;
+	//std::cout << "Thats all for today! please rate your experiance below from 1 to 5" << std::endl;
+	//std::cout << "" << std::endl;
+	//int userRating = 0;
+	//bool done = false;
+	//std::cin >> userRating;
+	//while (done == false)
+	//{
+	//	if (userRating == 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10)
+	//	{
+	//		std::cout << "Thanks for rating!" << std::endl;
+	//		done = true;
+	//	}
+	//	else if (userRating == 420)
+	//	{
+	//		std::cout << "lit!" << std::endl;
+	//		done = true;
+	//	}
+	//	else
+	//	{
+	//		std::cout << "Invalid try again!" << std::endl;
+	//		std::cin >> userRating;
+	//	}
+	//}
+	//return 0;
 }

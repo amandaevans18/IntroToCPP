@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
-void printXY(int x, int y);
-void promptLargest(int qtyRequested);
+//void printXY(int x, int y);
+//void promptLargest(int qtyRequested);
 
 int main()
 {
@@ -93,51 +93,51 @@ int main()
 	//printXY(userX,userY);
 	//system("pause");
 
-	int howManyNums = 0;
-	std::cout << "How many numbers would you like to give?" << std::endl;
-	std::cin >> howManyNums;
-	promptLargest(howManyNums);
-
-	system("pause");
-	return 0;
-}
-
-void printXY(int x, int y)
-{
-	if (x < y)
-	{
-		for (int ray = x; ray <= y; ray++)
-		{
-			std::cout << ray << std::endl;
-
-		}
-	}
-	if (y < x)
-	{
-		for (int ray = x; ray >= y; ray--)
-		{
-			std::cout << ray << std::endl;
-
-		}
-	}
-}
-
-void promptLargest(int qtyRequested)
-{
-	int biggestNum = INT_MIN;
-	int userCurrentNum = 0;
-	while (qtyRequested > 0)
-	{
-		std::cout << "Whats the Number?" << std::endl;
-		std::cin >> userCurrentNum;
-		if (userCurrentNum > biggestNum)
-		{
-			biggestNum = userCurrentNum;
-		}
-		std::cout << "Current Largest Number: " << biggestNum << std::endl;
-		qtyRequested--;
-	}
-	std::cout << "" << std::endl;
-	std::cout << "The Largest Number was: " << biggestNum << std::endl;
+//	int howManyNums = 0;
+//	std::cout << "How many numbers would you like to give?" << std::endl;
+//	std::cin >> howManyNums;
+//	promptLargest(howManyNums);
+//
+//	system("pause");
+//	return 0;
+//}
+//
+//void printXY(int x, int y)
+//{
+//	if (x < y)
+//	{
+//		for (int ray = x; ray <= y; ray++)
+//		{
+//			std::cout << ray << std::endl;
+//
+//		}
+//	}
+//	if (y < x)
+//	{
+//		for (int ray = x; ray >= y; ray--)
+//		{
+//			std::cout << ray << std::endl;
+//
+//		}
+//	}
+//}
+//
+//void promptLargest(int qtyRequested)
+//{
+//	int biggestNum = INT_MIN;
+//	int userCurrentNum = 0;
+//	while (qtyRequested > 0)
+//	{
+//		std::cout << "Whats the Number?" << std::endl;
+//		std::cin >> userCurrentNum;
+//		if (userCurrentNum > biggestNum)
+//		{
+//			biggestNum = userCurrentNum;
+//		}
+//		std::cout << "Current Largest Number: " << biggestNum << std::endl;
+//		qtyRequested--;
+//	}
+//	std::cout << "" << std::endl;
+//	std::cout << "The Largest Number was: " << biggestNum << std::endl;
 
 }
