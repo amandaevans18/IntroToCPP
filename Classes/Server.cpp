@@ -2,7 +2,7 @@
 #include<iostream>
 bool ServerBrowserService::registerServer(ServerInfo newServer)
 {
-	if(serverCount <= 49)
+	if (serverCount <= 49)
 	{
 		servers[serverCount] = newServer;
 		serverCount++;
@@ -12,7 +12,7 @@ bool ServerBrowserService::registerServer(ServerInfo newServer)
 	{
 		return false;
 	}
-	
+
 }
 
 int ServerBrowserService::getServers(ServerInfo * dstArray, size_t dstSize)
@@ -22,7 +22,7 @@ int ServerBrowserService::getServers(ServerInfo * dstArray, size_t dstSize)
 	int pingLimit = 0;
 	int regionSpecf = 0;
 	bool allowEmptyServers = false;
-	//you are a amazing, beautiful capable hardworking human being and you shouldnt tell yorself otherwise. you fucking nerd.
+	
 	for (int l = 0; l < dstSize; l++)
 	{
 		dstArray[l].regionID = servers[l].regionID;
@@ -34,9 +34,9 @@ int ServerBrowserService::getServers(ServerInfo * dstArray, size_t dstSize)
 
 	for (int i = 0; i < dstSize; i++)
 	{
-		std::cout<<"Region ID: "<< dstArray[i].regionID<< std::endl;
-		std::cout<< "Current number of players: " << dstArray[i].currentPlayerCount << std::endl;
-		std::cout << "Max players: " << dstArray[i].maxPlayers <<std::endl;
+		std::cout << "Region ID: " << dstArray[i].regionID << std::endl;
+		std::cout << "Current number of players: " << dstArray[i].currentPlayerCount << std::endl;
+		std::cout << "Max players: " << dstArray[i].maxPlayers << std::endl;
 		std::cout << "Ping: " << dstArray[i].ping << std::endl;
 	}
 	return count;

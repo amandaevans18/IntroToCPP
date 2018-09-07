@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 struct ServerInfo
 {
 	int regionID;             // region
