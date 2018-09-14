@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{04511FD7-3C14-4488-BA91-D1976629FA14}</ProjectGuid>
-    <RootNamespace>STLstring</RootNamespace>
+    <ProjectGuid>{AF32AE01-1549-4364-B076-16440AFE983A}</ProjectGuid>
+    <RootNamespace>TextFiles</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -116,6 +116,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Manager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
