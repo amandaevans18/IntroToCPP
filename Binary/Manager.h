@@ -16,11 +16,12 @@ struct saveData
 	double timePlayed;  // given in seconds
 };
 
-struct monsters 
+struct Monster 
 {
-	string monsterID;
-	string line;
-	
+	string idNum;
+	string monsterType;
+	string monsterLine;
+
 };
 
 void helloWorld();
@@ -29,10 +30,12 @@ void loadFiles();
 
 void saveFiles(saveData player);
 
-void addMonster(int idArr[]);
+void addMonster();
 
 void removeMonster();
 
 void viewMonster();
 
 void browseMonster();
+
+void saveToMasterList();

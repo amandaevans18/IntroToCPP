@@ -110,22 +110,67 @@ void saveFiles(saveData player)
 	file.flush();
 }
 
-void addMonster(int idArr[])
+void addMonster()
 {
-	int idNum = -1;
-	
+	fstream file;
+	string fileName;
+
+	string idNum;
+	string monsterLine;
+	string monsterType;
+	bool correctInput = false;
+
 	cout << "Add monster acessed" << endl;
 	system("pause");
-	cout << "Whats the monsters ID? (1 - 100)" << endl;
+	cout << "Whats the monsters ID?(No negative numbers!)" << endl;
 	cin >> idNum;
-	idNum -1;
-	if (idNum > 0 && idNum < 100) 
+	//cleanse your cins
+	cin.clear();
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	//checking input of id number
+	for (int i = 0; i < idNum.length(); i++) 
 	{
+		if (idNum[i] > 47 && idNum[i] < 58) 
+		{
+			correctInput = true;
+		}
+		else 
+		{
+			correctInput = false;
+			break;
+		}
+	}
+	if (correctInput == true) 
+	{
+		fileName = idNum + ".bin";
+		//For testing! 
 		cout << "Wow a correct input" << endl;
+		cout << "" << endl;
+		cout << "Whats the monsters type?" << endl;
+		getline(cin, monsterType);
+		//cleanse your cins
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+		cout << "Whats the monsters catch phrase?" << endl;
+		getline(cin, monsterLine);
+		//cleanse your cins
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		//saving info to a struct to be used in save to master list.
+		Monster currentMonster{ idNum,monsterType,monsterLine };
+
+		file.open(fileName.c_str(), std::ios::out | std::ios::binary);
+		
+		file.seekp(0, ios_base::end);
+		file << idNum <<", "<< endl;
+		file << monsterType <<", "<< endl;
+		file << monsterLine <<", "<< endl;
+
 	}
 	else 
 	{
-		cout << "Pick a better input" << endl;
+		cout << "Pick a better input maybe with you know numbers..." << endl;
 	}
 }
 
@@ -145,4 +190,13 @@ void browseMonster()
 {
 	cout << "browse monster acessed" << endl;
 	system("pause");
+}
+
+void saveToMasterList()
+{
+	fstream file;
+	string fileName = "masterFile";
+
+	file.open(fileName.c_str(), std::ios::out | std::ios::binary);
+
 }

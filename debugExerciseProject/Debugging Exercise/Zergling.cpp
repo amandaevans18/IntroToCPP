@@ -4,7 +4,7 @@
 
 Zergling::Zergling()
 {
-	health = 20;
+	health = 200;
 	attackDmg = 20;
 
 }

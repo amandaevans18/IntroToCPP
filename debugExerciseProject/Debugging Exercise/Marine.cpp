@@ -4,7 +4,7 @@
 
 Marine::Marine()
 {
-	health = 100;
+	health = 10;
 	attackDmg = 10;
 }
 

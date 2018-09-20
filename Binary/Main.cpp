@@ -11,7 +11,7 @@ int main()
 	//loadFiles();
 	bool keepGoing = true;
 	int userInput = 0;
-	int monsterID[100]{ 0 };
+
 
 	cout << "Welcome to Monster Creature Quest!" << endl;
 	cout << "" << endl;
@@ -29,7 +29,7 @@ int main()
 		switch (userInput) 
 		{
 		case 1:
-			addMonster(monsterID);
+			addMonster();
 			break;
 		case 2:
 			removeMonster();
