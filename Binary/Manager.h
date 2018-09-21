@@ -19,7 +19,7 @@ struct saveData
 struct Monster 
 {
 	string idNum;
-	string monsterType;
+	string monsterName;
 	string monsterLine;
 
 };
@@ -38,4 +38,6 @@ void viewMonster();
 
 void browseMonster();
 
-void saveToMasterList();
+void saveToMasterList(Monster current);
+
+void deleteFromMasterList(string recivedIdNum);

@@ -10,7 +10,7 @@ int main()
 	//saveFiles(data);
 	//loadFiles();
 	bool keepGoing = true;
-	int userInput = 0;
+	float userInput = 0.0f;
 
 
 	cout << "Welcome to Monster Creature Quest!" << endl;
@@ -25,24 +25,33 @@ int main()
 		cout << "4) Browse monsters " << endl;
 		cout << "5) Exit" << endl;
 		cin >> userInput;
-
-		switch (userInput) 
+		//cleanse your cins
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		
+		if (userInput == 1)
 		{
-		case 1:
 			addMonster();
-			break;
-		case 2:
+		}
+		else if(userInput == 2) 
+		{
 			removeMonster();
-			break;
-		case 3:
+		}
+		else if (userInput == 3)
+		{
 			viewMonster();
-			break;
-		case 4:
+		}
+		else if (userInput == 4)
+		{
 			browseMonster();
+		}
+		else if (userInput == 5)
+		{
 			break;
-		case 5:
-			keepGoing = false;
-			break;
+		}
+		else 
+		{
+			cout << "Try that again bud....." << endl;
 		}
 	}
 
