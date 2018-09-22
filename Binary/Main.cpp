@@ -31,6 +31,7 @@ int main()
 		
 		if (userInput == 1)
 		{
+
 			addMonster();
 		}
 		else if(userInput == 2) 

@@ -118,107 +118,164 @@ void addMonster()
 	string idNum;
 	string monsterLine;
 	string monsterName;
+	string listedId;
 	bool correctID = false;
-	bool correctName = false;
-	bool correctLine = false;
+	bool noDups = false;
+	bool numbers = false;
+	string masterFile = "masterFile.bin";
+
+
+		cout << "Add monster acessed" << endl;
+		system("pause");
+		string buffer;
+		//will loop until correct id = true
+		while (!correctID)
+		{
+			//opens the master file to view 
+			file.open(masterFile.c_str(), std::ios::in | std::ios::binary);
+			//promts player for monster ID
+			cout << "Whats the monsters ID?(No negative numbers!)" << endl;
+			//takes in monster ID
+			cin >> idNum;
+			//cleanse your cins
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			//checking if the master file failed to open if it didnt then look through... if it did there cannot be dupes
+			if (!file.fail())
+			{
+				//Goes until no more lines or noDups is true
+				while (getline(file, buffer)) // just getline!
+				{
+					//checks to see if the line is not empty
+					if (buffer.length() != 0)
+					{
+						//then goes through buffers length
+						for (int i = 0; i < buffer.length(); i++)
+						{
+							if (buffer[i] == ',')
+							{
+								//stop when you hit a comma in the master list.
+								break;
+							}
+							else
+							{
+								//else set listedId to the id being read
+								listedId = listedId + buffer[i];
+							}
+						}
+						//checks the listedId if it is the idNUm then reset everything close the file and the id is already in use! break out of current while
+						if (listedId == idNum)
+						{
+							idNum.clear();
+							listedId.clear();
+							cout << "ID already in use!" << endl;
+							file.clear();
+							file.close();
+							break;
+						}//else just reset everything but set nodups to true bc  also close the file and break out of current while
+						else
+						{
+							buffer.clear();
+							listedId.clear();
+							noDups = true;
+							break;
+						}
+					}//if buffer is empty (aka if the master list is empty)
+					else
+					{
+						//clear the collectd id clear the buffer and nodups has to equal true if the master file is empty
+						listedId.clear();
+						buffer.clear();
+						noDups = true;
+					}
+				}//closeing the file after looping through it
+				file.clear();
+				file.close();
+			}//if the file didnt open then that means it hasnt been created so has to be empty
+			else 
+			{
+				noDups = true;
+			}
+			//loops through idNums
+			for (int i = 0; i < idNum.length(); i++)
+			{//if idNum has numbers in it 
+				if (idNum[i] > 47 && idNum[i] < 58)
+				{
+					numbers = true;
+				}
+				else
+				{//if it doesnt try again my dude
+					cout << "Thats not a number..." << endl;
+					break;
+				}
+			}
+			//debug for what dups and nums equals at the end of the checking.
+			cout << "No dups " << noDups << " nums " << numbers << endl;
+			if (numbers == false || noDups == false) //if either of these inputs are wrong reenter one
+			{
+				noDups = false;//reset to false
+				numbers = false;//reset to false
+				continue;//back to top of loop
+			}
+			else 
+			{//correctId is true if neither of those are false
+				correctID = true;
+			}
+
+
+		}
+		//if correctId is true take in all the info and then add a monster
+		if (correctID == true)
+		{
+			cout << "Whats the monsters name?" << endl;
+			getline(cin, monsterName);
+			//cleanse your cins
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+			cout << "Whats the monsters catch phrase?" << endl;
+			getline(cin, monsterLine);
+			//cleanse your cins
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+			fileName = idNum + ".bin";
+			//For testing! 
+			cout << "Wow correct inputs" << endl;
+			cout << "" << endl;
+
+			//saving info to a struct to be used in save to master list.
+			Monster currentMonster{ idNum,monsterName,monsterLine };
+
+			file.open(fileName.c_str(), std::ios::out | std::ios::binary);
+
+			file.seekp(0, ios_base::end);
+			file << "Monster ID: " << idNum << endl;
+			file << "Monster Type: " << monsterName << endl;
+			file << "Monster Phrase: " << monsterLine << endl;
+			saveToMasterList(currentMonster);
+			noDups = false;
+			numbers = false;
+			idNum.clear();
+			correctID = false;
+			monsterLine.clear();
+			monsterName.clear();
+			file.clear();
+			file.close();
+		}
+		else 
+		{
+			cout << "try that number again.." << endl;
+			noDups = false;
+			numbers = false;
+			idNum.clear();
+			correctID = false;
+			monsterLine.clear();
+			monsterName.clear();
+
+		}
+
 	
-	cout << "Add monster acessed" << endl;
-	system("pause");
-	while (!correctID || !correctLine || !correctName)
-	{
-		cout << "Whats the monsters ID?(No negative numbers!)" << endl;
-		cin >> idNum;
-		//cleanse your cins
-		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		//checking input of id number
-		for (int i = 0; i < idNum.length(); i++)
-		{
-			if (idNum[i] > 47 && idNum[i] < 58)
-			{
-				correctID = true;
-			}
-			else
-			{
-				correctID = false;
-				cout << "Thats not a number..." << endl;
-				break;
-			}
-		}
-		if (correctID = false)
-		{
-			continue;
-		}
-		cout << "Whats the monsters name?" << endl;
-		getline(cin, monsterName);
-		//cleanse your cins
-		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		for (int i = 0; i < monsterName.length(); i++)
-		{
-			if (monsterName[i] < 47 && monsterName[i] > 58)
-			{
-				correctID = true;
-			}
-			else
-			{
-				correctName = false;
-				cout << "No numbers.." << endl;
-				break;
-			}
-		}
-		if (correctName = false)
-		{
-			continue;
-		}
-		cout << "Whats the monsters catch phrase?" << endl;
-		getline(cin, monsterLine);
-		//cleanse your cins
-		cin.clear();
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		for (int i = 0; i < monsterLine.length(); i++)
-		{
-			if (monsterLine[i] < 47 && monsterLine[i] > 58)
-			{
-				correctID = true;
-			}
-			else
-			{
-				correctLine = false;
-				cout << "No numbers..." << endl;
-				break;
-			}
-		}
-		if (correctLine = false) 
-		{
-			continue;
-		}
-		if (correctID && correctLine && correctName)
-		{
-			break;
-		}
-
-	}
-
-	if (correctID && correctLine && correctName) 
-	{
-		fileName = idNum + ".bin";
-		//For testing! 
-		cout << "Wow correct inputs" << endl;
-		cout << "" << endl;
-
-		//saving info to a struct to be used in save to master list.
-		Monster currentMonster{ idNum,monsterName,monsterLine };
-
-		file.open(fileName.c_str(), std::ios::out | std::ios::binary);
-		
-		file.seekp(0, ios_base::end);
-		file <<"Monster ID: "<< idNum << endl;
-		file <<"Monster Type: "<< monsterName << endl;
-		file <<"Monster Phrase: "<< monsterLine << endl;
-		saveToMasterList(currentMonster);
-	}
-
 }
 
 void removeMonster()
@@ -400,7 +457,11 @@ void deleteFromMasterList(string recivedIdNum)
 	{
 		for (int i = 0; i< buffer.length(); i++)
 		{
-			if (buffer[i] > 47 && buffer[i] < 58)
+			if (buffer[i] == ',')
+			{
+				break;
+			}
+			else 
 			{
 				currentIdNum = currentIdNum + buffer[i];
 			}
@@ -408,11 +469,11 @@ void deleteFromMasterList(string recivedIdNum)
 		}
 		if (currentIdNum != recivedIdNum) 
 		{
-			
 			tempFile.open(tempFileName.c_str(), std::ios::app | std::ios::binary);
-			tempFile << buffer <<endl;
+			tempFile << buffer << endl;
 			currentIdNum.clear();
 		}
+
 
 	}
 	//delete masterFile than copy tempFile to master file!!
