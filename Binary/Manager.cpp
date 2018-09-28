@@ -99,7 +99,7 @@ void saveFiles(saveData player)
 
 	
 	//yeets away all the flags
-	file.clear();
+	
 
 	//file << "Player name: "<<player.playerName << endl;
 	//file << "Player deaths: " << player.deathCount << endl;
@@ -108,6 +108,8 @@ void saveFiles(saveData player)
 	//file << "Player's time played: " << player.timePlayed << endl;
 
 	file.flush();
+	file.clear();
+	file.close();
 }
 
 void addMonster()
@@ -210,7 +212,7 @@ void addMonster()
 				}
 			}
 			//debug for what dups and nums equals at the end of the checking.
-			cout << "No dups " << noDups << " nums " << numbers << endl;
+			//cout << "No dups " << noDups << " nums " << numbers << endl;
 			if (numbers == false || noDups == false) //if either of these inputs are wrong reenter one
 			{
 				noDups = false;//reset to false
